@@ -48,6 +48,12 @@ class MyColorWindow(QColorDialog):
         self.hide()
 
 
+"""
+这个最父级的控件是QLabel
+QPixmap就相当于是一张图片
+现在使用QPainter在QPixmap这幅图上画直线
+然后使用QPainter把画好的QPixmap画到QLabel上面
+"""
 class DrawLable(QLabel):
     x0 = 0
     y0 = 0
@@ -57,9 +63,10 @@ class DrawLable(QLabel):
 
     def __init__(self, parent):
         super(DrawLable, self).__init__(parent)
-        self.pixmap = QPixmap(250, 400)  # 考虑边框的间距 减去px
+        self.pixmap = QPixmap(800, 600)  # 考虑边框的间距 减去px
         self.pixmap.fill(Qt.white)
-        self.setStyleSheet("border: 2px solid red")
+
+        self.setStyleSheet("border: None")
         self.Color = Qt.blue  # pen color: defult:blue
         self.penwidth = 4  # pen width : default:4
 
@@ -71,7 +78,7 @@ class DrawLable(QLabel):
         painter.drawLine(self.x0, self.y0, self.x1, self.y1)
 
         Label_painter = QPainter(self)
-        Label_painter.drawPixmap(2, 2, self.pixmap)
+        Label_painter.drawPixmap(0, 0, self.pixmap)
 
     def mousePressEvent(self, event):
         self.x1 = event.x()
