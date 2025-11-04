@@ -4,7 +4,6 @@ import json
 import os
 import random
 import ctypes
-from Backend.Tools.ProcessText import ReadText
 from Backend.Tools.ThemeChange import WidgetsThemeChange
 
 
@@ -32,17 +31,13 @@ def iconActivated(reason):
 def Close():
     sys.exit(app.exec_())
 
-# def Save():
-#     try:
-#         data = textEdit.toPlainText()
-#         global savedTexts
-#         savedTexts = data
-#         with open("./Cache/cache.txt", mode="w") as file:
-#             file.write(data)
-#
-#         savedLabel.hide()
-#     except Exception as E:
-#         print(E)
+def Save():
+    try:
+        drawEdit.pixmap.save("./Cache/image.png", "PNG")
+
+        savedLabel.hide()
+    except Exception as E:
+        print(E)
 
 def Hide():
     effectWindow.showMinimized()
@@ -125,9 +120,6 @@ if __name__ == '__main__':
              "烈淡紫-灰白": [(81, 56, 88), (226, 218, 216)],
              "冷蓝-脏橘": [(59, 96, 105), (211, 152, 134)]}
 
-
-    data = ReadText()
-
     app = QApplication(sys.argv)
 
     # 获取当前项目路径
@@ -136,7 +128,6 @@ if __name__ == '__main__':
     global isSaved
     global savedTexts
     isSaved = True
-    savedTexts = data
 
     effectWindow = MyWindow()
 
@@ -225,7 +216,7 @@ if __name__ == '__main__':
     MenuTextEnlarge = menu.addMenu("font size")
     MenuThemeChange = menu.addMenu("theme change")
 
-    # ActionSave.triggered.connect(Save)
+    ActionSave.triggered.connect(Save)
     # ActionHide.triggered.connect(Hide)
     # ActionTextDefault.triggered.connect(Default)
     # ActionTextColor.triggered.connect(SetTextColor)
