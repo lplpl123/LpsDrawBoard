@@ -63,12 +63,12 @@ class DrawLable(QLabel):
 
     def __init__(self, parent):
         super(DrawLable, self).__init__(parent)
-        self.pixmap = QPixmap(800, 600)  # 考虑边框的间距 减去px
+        self.pixmap = QPixmap(300, 450)  # 考虑边框的间距 减去px
         self.pixmap.fill(Qt.white)
 
         self.setStyleSheet("border: None")
         self.Color = Qt.blue  # pen color: defult:blue
-        self.penwidth = 4  # pen width : default:4
+        self.penwidth = 6  # pen width : default:4
 
     def paintEvent(self, event):
         # super().paintEvent(event)

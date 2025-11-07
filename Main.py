@@ -60,17 +60,8 @@ def SaveLabelShow():
 #     except Exception as E:
 #         print(E)
 
-# def SetTextSize(size):
-#     try:
-#         cursor = textEdit.textCursor()
-#         if cursor.hasSelection():
-#             charFormat = cursor.charFormat()
-#             charFormat.setFontPointSize(size)
-#             cursor.setCharFormat(charFormat)
-#             textEdit.setTextCursor(cursor)
-#
-#     except Exception as E:
-#         print(E)
+def SetPenWidth(width):
+    drawEdit.penwidth = width
 
 def SetTheme(themeText):
     showIndex = random.randint(0, 1)
@@ -173,6 +164,7 @@ if __name__ == '__main__':
 
     savedLabel = QLabel(titleFrame)
 
+    # draw board
     drawEdit = DrawLable(window)
     # textEdit.textChanged.connect(CheckIsSaved)
 
@@ -213,7 +205,7 @@ if __name__ == '__main__':
     ActionClose = QAction("close")
     ActionClose.setShortcut('Ctrl+G')
 
-    MenuTextEnlarge = menu.addMenu("font size")
+    MenuPenSize = menu.addMenu("pen width")
     MenuThemeChange = menu.addMenu("theme change")
 
     ActionSave.triggered.connect(Save)
@@ -222,31 +214,19 @@ if __name__ == '__main__':
     # ActionTextColor.triggered.connect(SetTextColor)
     # ActionTextBold.triggered.connect(TextBold)
 
-    FontSize01 = QAction("12px")
-    FontSize02 = QAction("24px")
-    FontSize03 = QAction("36px")
-    FontSize04 = QAction("48px")
-    FontSize05 = QAction("60px")
-    FontSize06 = QAction("72px")
-    FontSize07 = QAction("10px")
-    FontSize08 = QAction("8px")
-    MenuTextEnlarge.addAction(FontSize08)
-    MenuTextEnlarge.addAction(FontSize07)
-    MenuTextEnlarge.addAction(FontSize01)
-    MenuTextEnlarge.addAction(FontSize02)
-    MenuTextEnlarge.addAction(FontSize03)
-    MenuTextEnlarge.addAction(FontSize04)
-    MenuTextEnlarge.addAction(FontSize05)
-    MenuTextEnlarge.addAction(FontSize06)
+    PenWidth01 = QAction("2")
+    PenWidth02 = QAction("4")
+    PenWidth03 = QAction("6")
+    PenWidth04 = QAction("8")
+    MenuPenSize.addAction(PenWidth01)
+    MenuPenSize.addAction(PenWidth02)
+    MenuPenSize.addAction(PenWidth03)
+    MenuPenSize.addAction(PenWidth04)
 
-    # FontSize01.triggered.connect(lambda: SetTextSize(12))
-    # FontSize02.triggered.connect(lambda: SetTextSize(24))
-    # FontSize03.triggered.connect(lambda: SetTextSize(36))
-    # FontSize04.triggered.connect(lambda: SetTextSize(48))
-    # FontSize05.triggered.connect(lambda: SetTextSize(60))
-    # FontSize06.triggered.connect(lambda: SetTextSize(72))
-    # FontSize07.triggered.connect(lambda: SetTextSize(10))
-    # FontSize08.triggered.connect(lambda: SetTextSize(8))
+    PenWidth01.triggered.connect(lambda: SetPenWidth(2))
+    PenWidth02.triggered.connect(lambda: SetPenWidth(4))
+    PenWidth03.triggered.connect(lambda: SetPenWidth(6))
+    PenWidth04.triggered.connect(lambda: SetPenWidth(8))
 
     Theme01 = QAction("琥珀黄-青雀头绿")
     Theme02 = QAction("太师青-血牙")
